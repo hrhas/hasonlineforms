@@ -1,0 +1,801 @@
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f5f5f5;
+
+    color: #000000;
+
+    min-height: 100vh;
+
+    /*
+        Makes the page a vertical layout:
+
+        HEADER
+        MAIN
+        FOOTER
+    */
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+    background: #001F59;
+
+    color: #ffffff;
+
+    border-bottom: 5px solid #FFB900;
+
+    flex-shrink: 0;
+}
+
+
+.header-content {
+    width: min(1100px, 92%);
+
+    margin: 0 auto;
+
+    min-height: 125px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.logo-mark {
+    width: 68px;
+    height: 68px;
+
+    background: #FFB900;
+
+    color: #001F59;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    border-radius: 8px;
+}
+
+
+.site-header h1 {
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+.site-header p {
+    margin-top: 7px;
+
+    color: #ffffff;
+
+    opacity: 0.9;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-container {
+    width: min(900px, 92%);
+
+    margin: 0 auto;
+
+    padding: 50px 0 60px;
+
+    /*
+        Keeps the footer at the bottom
+        when there isn't much content.
+    */
+    flex: 1;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.intro h2 {
+    color: #001F59;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+
+.intro p {
+    color: #555555;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM LIST
+========================================================= */
+
+.forms-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card {
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-left: 5px solid #001F59;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05);
+
+    /*
+        Smooth card hover.
+    */
+    transition:
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+
+.form-card:hover {
+    border-left-color: #FFB900;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-card.active {
+    border-left-color: #FFB900;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header {
+    width: 100%;
+
+    min-height: 90px;
+
+    padding: 18px 22px;
+
+    border: none;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    color: #000000;
+
+    font-family: inherit;
+}
+
+
+.card-header:focus-visible {
+    outline: 3px solid #FFB900;
+
+    outline-offset: -3px;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.card-number {
+    width: 55px;
+
+    flex-shrink: 0;
+
+    color: #001F59;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.card-title-area {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.card-title {
+    color: #001F59;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+.card-subtitle {
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   EXPAND ICON
+========================================================= */
+
+.expand-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border: 2px solid #001F59;
+
+    border-radius: 50%;
+
+    color: #001F59;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    /*
+        Smooth rotation.
+
+        0.55s prevents the icon
+        from changing instantly.
+    */
+    transition:
+        transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.4s ease,
+        color 0.4s ease;
+}
+
+
+.form-card.active .expand-icon {
+    background: #FFB900;
+
+    color: #001F59;
+
+    /*
+        Rotate + into an X.
+    */
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   SLIDING DETAILS
+========================================================= */
+
+/*
+    CLOSED STATE
+
+    The content has no visible height.
+*/
+
+.details {
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    opacity: 0;
+
+    /*
+        This is the main sliding animation.
+
+        0.65 seconds makes the transition
+        visible and comfortable.
+    */
+    transition:
+        grid-template-rows 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.45s ease;
+}
+
+
+/*
+    OPEN STATE
+
+    The panel expands from 0fr to 1fr.
+*/
+
+.form-card.active .details {
+    grid-template-rows: 1fr;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   DETAILS CONTENT
+========================================================= */
+
+.details-content {
+    min-height: 0;
+
+    overflow: hidden;
+
+    padding: 0 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 45px;
+
+    /*
+        Start slightly above.
+
+        This makes the content feel
+        like it is sliding into place.
+    */
+    transform: translateY(-18px);
+
+    opacity: 0;
+
+    /*
+        All changes happen gradually.
+    */
+    transition:
+        padding 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.5s ease;
+}
+
+
+/*
+    OPEN CONTENT
+*/
+
+.form-card.active .details-content {
+    padding: 30px;
+
+    transform: translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+.qr-link {
+    flex-shrink: 0;
+
+    width: 220px;
+    height: 220px;
+
+    padding: 8px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 6px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    /*
+        Smooth QR hover effect.
+    */
+    transition:
+        border-color 0.4s ease,
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.qr-link:hover {
+    border-color: #FFB900;
+
+    transform: scale(1.025);
+}
+
+
+.qr-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================================
+   FORM INFORMATION
+========================================================= */
+
+.form-information {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.form-information h3 {
+    color: #001F59;
+
+    font-size: 21px;
+
+    line-height: 1.35;
+
+    margin-bottom: 12px;
+}
+
+
+.form-information p {
+    color: #555555;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   FORM URL
+========================================================= */
+
+.form-url {
+    display: block;
+
+    color: #001F59;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    word-break: break-all;
+
+    text-decoration: underline;
+
+    margin-bottom: 20px;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+.form-url:hover {
+    color: #FFB900;
+}
+
+
+/* =========================================================
+   OPEN FORM BUTTON
+========================================================= */
+
+.open-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 24px;
+
+    background: #001F59;
+
+    color: #ffffff;
+
+    border: 2px solid #001F59;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    /*
+        Smooth button interaction.
+    */
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        border-color 0.4s ease,
+        transform 0.3s ease;
+}
+
+
+.open-button:hover {
+    background: #FFB900;
+
+    border-color: #FFB900;
+
+    color: #001F59;
+}
+
+
+.open-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    background: #001F59;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    padding: 20px;
+
+    font-size: 12px;
+
+    flex-shrink: 0;
+
+    /*
+        Keeps footer at the bottom
+        when content is short.
+    */
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .header-content {
+        min-height: 105px;
+    }
+
+    .logo-mark {
+        width: 55px;
+        height: 55px;
+
+        font-size: 18px;
+    }
+
+    .site-header h1 {
+        font-size: 19px;
+    }
+
+    .site-header p {
+        font-size: 13px;
+    }
+
+    .main-container {
+        padding-top: 35px;
+    }
+
+    .details-content {
+        gap: 25px;
+    }
+
+    .qr-link {
+        width: 190px;
+        height: 190px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .header-content {
+        width: 90%;
+
+        gap: 12px;
+    }
+
+    .logo-mark {
+        width: 48px;
+        height: 48px;
+
+        font-size: 16px;
+    }
+
+    .site-header h1 {
+        font-size: 16px;
+
+        line-height: 1.3;
+    }
+
+    .site-header p {
+        font-size: 12px;
+    }
+
+    .main-container {
+        width: 94%;
+
+        padding-top: 30px;
+
+        padding-bottom: 40px;
+    }
+
+    .intro h2 {
+        font-size: 23px;
+    }
+
+    .intro p {
+        font-size: 14px;
+    }
+
+
+    /* CARD */
+
+    .card-header {
+        min-height: 82px;
+
+        padding: 15px;
+    }
+
+    .card-number {
+        width: 40px;
+
+        font-size: 16px;
+    }
+
+    .card-title {
+        font-size: 15px;
+    }
+
+    .card-subtitle {
+        font-size: 12px;
+    }
+
+    .expand-icon {
+        width: 30px;
+        height: 30px;
+
+        font-size: 19px;
+    }
+
+
+    /* DETAILS */
+
+    .form-card.active .details-content {
+        padding: 25px 18px;
+
+        flex-direction: column;
+
+        gap: 25px;
+    }
+
+    .qr-link {
+        width: 180px;
+        height: 180px;
+    }
+
+    .form-information {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .form-information h3 {
+        font-size: 18px;
+    }
+
+    .form-information p {
+        font-size: 13px;
+    }
+
+    .form-url {
+        font-size: 12px;
+    }
+
+    .open-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+    }
+}
+
